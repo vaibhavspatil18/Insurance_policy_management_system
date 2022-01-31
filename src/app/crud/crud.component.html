@@ -1,0 +1,74 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance</title>
+</head>
+<body>
+    <div class="tag">
+        <h1>
+            Insurance Policy Management System
+        </h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="AddPolicyTitleContainer">
+                <div class="addPolicyTitleContainer">
+                    <div>Add Policy Details</div>
+                </div>
+                <div class="addPolicyBtnContainer">
+                    <div class="addNewPolicyBtn" (click)="addNewPolicyBtn()"> Add +</div>
+                </div>
+                <div *ngIf="newPolicyClicked">
+                    <div class="formWrapper">
+                        <form>
+                            <div class="form-group name">
+                                <input type="text" class="form-control input" id= "name" name="name" [(ngModel)] = "model.number" placeholder="enter policy no">
+                            </div>
+                            <div class="form-group position">
+                                <input type="text" class="form-control input" id= "position" name="position" [(ngModel)] = "model.amount" placeholder="enter policy amount">
+                            </div>
+                            <div class="submitBtnContainer">
+                                <button type = "submit" class="saveBtn" (click)="addPolicy()">save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="tableWrapper">
+                    <div class="containerTitle">
+                        <div class="oneTitle">Policy Number</div>
+                        <div class="twoTitle">Policy Amount</div>
+                        <div class="threeTitle">Operation</div>
+                    </div>
+    
+                    <div class="containerListItems" *ngFor="let policy of policies; let i=index"[style.background-color] = "changeColorOne()">
+                        <div class="one">{{policy.number}}</div>
+                        <div class="two">{{policy.amount}}</div>
+                        <div class="three">
+                            <button class="btn btn-primary" (click)="editPolicy(i)" style="margin: 2px;">Edit</button>
+                            <button class="btn btn-danger" (click)="deletePolicy(i)" style="margin: 2px;">Delete</button>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="editPolicyTitlecontainer">
+                    <div class=" ">Edit Policy</div>
+                </div>
+                <form>
+                    <div class="form-group name">
+                        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="model2.number" placeholder="number here">
+                    </div>
+                    <div class="form-group position">
+                        <input type="text" class="form-control" id="position" name="position" [(ngModel)]="model2.amount" placeholder="amount here">
+                    </div>
+                    <div class="btn btn-dark" type="submit" (click)="updatePolicy()">Update</div>
+                </form>
+    
+    
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
